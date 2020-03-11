@@ -51,6 +51,19 @@ deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ disco-security main restric
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ disco-proposed main restricted universe multiverse
 deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ disco-proposed main restricted universe multiverse
 
+# ubuntu
+deb http://us.archive.ubuntu.com/ubuntu/ disco main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ disco-updates main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ disco universe
+deb http://us.archive.ubuntu.com/ubuntu/ disco-updates universe
+deb http://us.archive.ubuntu.com/ubuntu/ disco multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ disco-updates multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ disco-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu disco-security main restricted
+deb http://security.ubuntu.com/ubuntu disco-security universe
+deb http://security.ubuntu.com/ubuntu disco-security multiverse
+
+
 ' > sources.list
 
 apt update
