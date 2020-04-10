@@ -1,4 +1,4 @@
-ETCD_VER=v3.3.18
+ETCD_VER=v3.4.0
 
 # choose either URL
 GOOGLE_URL=https://storage.googleapis.com/etcd

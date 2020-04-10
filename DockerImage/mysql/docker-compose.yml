@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  mysql:
+    image: "mysql:5.7.29"
+    container_name: mysql-srv
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./runtime/data/mysql:/var/lib/mysql
+    restart: always
+  

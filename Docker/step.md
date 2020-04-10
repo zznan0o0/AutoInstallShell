@@ -3,3 +3,6 @@
 3. ./DockerInstall.sh
 4. ./DockerComposeInstall.sh
 5. ./DockerReplaceSource.sh
+6. groupadd docker
+7. gpasswd -a dever docker
+8. service docker restart或sudo systemctl restart docker
