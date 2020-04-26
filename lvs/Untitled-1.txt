@@ -1,0 +1,76 @@
+Server Software:        nginx/1.16.1
+Server Hostname:        www.a.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        4 bytes
+
+Concurrency Level:      100
+Time taken for tests:   44.675 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      6120338 bytes
+HTML transferred:       40000 bytes
+Requests per second:    223.84 [#/sec] (mean)
+Time per request:       446.749 [ms] (mean)
+Time per request:       4.467 [ms] (mean, across all concurrent requests)
+Transfer rate:          133.79 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   1.4      1      20
+Processing:    39  435 703.0    340    9153
+Waiting:       19  435 703.0    340    9153
+Total:         40  437 702.9    342    9155
+
+Percentage of the requests served within a certain time (ms)
+  50%    342
+  66%    366
+  75%    387
+  80%    401
+  90%    454
+  95%    538
+  98%   1146
+  99%   4388
+ 100%   9155 (longest request)
+
+
+
+
+Server Software:        nginx/1.16.1
+Server Hostname:        www.a.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        4 bytes
+
+Concurrency Level:      100
+Time taken for tests:   143.698 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      6120076 bytes
+HTML transferred:       40000 bytes
+Requests per second:    69.59 [#/sec] (mean)
+Time per request:       1436.976 [ms] (mean)
+Time per request:       14.370 [ms] (mean, across all concurrent requests)
+Transfer rate:          41.59 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   1.2      2      21
+Processing:    33 1363 4360.7    672   43051
+Waiting:       12 1363 4360.7    672   43050
+Total:         34 1365 4360.6    674   43052
+
+Percentage of the requests served within a certain time (ms)
+  50%    674
+  66%    774
+  75%    847
+  80%    898
+  90%   1089
+  95%   1422
+  98%  14756
+  99%  31917
+ 100%  43052 (longest request)
+
+

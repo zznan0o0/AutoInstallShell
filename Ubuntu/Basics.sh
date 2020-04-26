@@ -2,6 +2,8 @@
 su
 cd /etc/apt/
 cp sources.list  sources.list.bak
+
+
 echo '
 #阿里云源
 deb http://mirrors.aliyun.com/ubuntu/ disco main restricted universe multiverse

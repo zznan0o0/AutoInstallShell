@@ -1,0 +1,25 @@
+#####################################################
+###              Welcome to KubeSphere!           ###
+#####################################################
+
+Console: http://192.168.10.100:30880
+Account: admin
+Password: P@88w0rd
+
+NOTES：
+  1. After logging into the console, please check the
+     monitoring status of service components in
+     the "Cluster Status". If the service is not
+     ready, please wait patiently. You can start
+     to use when all components are ready.
+  2. Please modify the default password after login.
+
+#####################################################
+
+
+
+NOTE:
+
+Verify the installation logs and result:
+
+   kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath={.items[0].metadata.name}) -f

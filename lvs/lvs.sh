@@ -45,8 +45,8 @@ sysctl -p
 # 清除主机
 iface=ens33:0
 vip=192.168.10.6
-route del -host $vip dev $iface
-ifconfig $iface down
+# route del -host $vip dev $iface
+# ifconfig $iface down
 ipvsadm -C
 
 # 清除子机
