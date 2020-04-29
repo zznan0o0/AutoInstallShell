@@ -39,3 +39,12 @@ show slave status;
 
 -----------------
 查看信息如果报这个错的话The slave I/O thread stops because master and slave have equal MySQL server UUIDs，可能因为系统镜像是复制的所以/var/lib/mysql/auto.cnf里id是一样的，停止mysql 删除这个文件重启即可
+
+# 有节点停止后
+stop slave;
+reset slave;
+start slave;
+
+# 为了避免从节点进行写入从设置只读
+SET GLOBAL super_read_only=1;
+SET GLOBAL read_only=1;
