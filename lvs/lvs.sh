@@ -1,6 +1,6 @@
 # 主机
 iface=ens33:0
-vip=192.168.10.6
+vip=192.168.10.5
 rs1=192.168.10.178
 rs2=192.168.10.190
 # 使用keepalived就不需要下面俩句
@@ -19,7 +19,7 @@ ipvsadm -a -t $vip:80 -r $rs2:80 -g -w 1
 
 # 子机
 iface=lo:0
-vip=192.168.10.6
+vip=192.168.10.5
 ifconfig $iface $vip broadcast $vip netmask 255.255.255.255 up
 route add -host $vip dev $iface
 
@@ -44,13 +44,13 @@ sysctl -p
 
 # 清除主机
 iface=ens33:0
-vip=192.168.10.6
+vip=192.168.10.5
 # route del -host $vip dev $iface
 # ifconfig $iface down
 ipvsadm -C
 
 # 清除子机
 iface=lo:0
-vip=192.168.10.6
+vip=192.168.10.5
 route del -host $vip $iface
 ifconfig $iface down
