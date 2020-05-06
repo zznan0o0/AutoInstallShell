@@ -3,7 +3,7 @@ apt install -y keepalived
 echo "vrrp_instance VI_1 {
     state MASTER
     interface ens33
-    virtual_router_id 51 # 不能重
+    virtual_router_id 51 # 不同keep组的id不能重，备份可以
     priority 101
     advert_int 1
     authentication {
@@ -48,7 +48,7 @@ vrrp_script: 健康检查脚本配置。
 细分下去，vrrp_instance配置段包括：
 
 state: 实例角色。分为一个MASTER和一(多)个BACKUP。
-virtual_router_id: 标识该虚拟路由器的ID，有效范围为0-255。
+virtual_router_id: 标识该虚拟路由器的ID，有效范围为0-255。 主从一致
 priority: 优先级初始值，竞选MASTER用到，有效范围为0-255。
 advert_int: VRRP协议通告间隔。
 interface: VIP所绑定的网卡，指定处理VRRP多播协议包的网卡。
