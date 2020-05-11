@@ -3,7 +3,7 @@ wget https://download.docker.com/linux/static/stable/x86_64/docker-19.03.5.tgz
 tar -xvf docker-19.03.5.tgz
 cp docker/* /usr/bin/
 
-echo "
+echo '
 [Unit]
 
 Description=Docker Application Container Engine
@@ -68,7 +68,7 @@ StartLimitInterval=60s
 
 WantedBy=multi-user.target
 
-" > /etc/systemd/system/docker.service
+' > /etc/systemd/system/docker.service
 
 #添加文件权限并启动docker
 chmod +x /etc/systemd/system/docker.service             
