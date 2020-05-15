@@ -5,7 +5,7 @@ vim /etc/mysql/my.cnf
 server_id=154
 log-bin=mysql-bin 
 binlog_format=mixed
-relay-log=/home/data/mysql/binlog/mysql-relay-bin
+# relay-log=/home/data/mysql/binlog/mysql-relay-bin
 
 重启mysql
 service mysql restart
@@ -25,7 +25,7 @@ vim /etc/mysql/my.cnf
 server_id=155
 log-bin=mysql-bin 
 binlog_format=mixed
-relay-log=/home/data/mysql/binlog/mysql-relay-bin
+# relay-log=/home/data/mysql/binlog/mysql-relay-bin
 
 service mysql restart
 
