@@ -1,6 +1,7 @@
 wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
 # tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
 tar -xzf go1.14.3.linux-amd64.tar.gz
+mv go /usr/local/
 
 mkdir -p /usr/local/lib/golang
 chmod -R 775 /usr/local/lib/golang
