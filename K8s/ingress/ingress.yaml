@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: ingress-nginx
+spec:
+  rules:
+  - host: k9s.cyb.com
+    http:
+      paths:
+      - path: /nginx(/|$)(.*)
+        backend:
+          serviceName: ngxin-svc
+          servicePort: 8080

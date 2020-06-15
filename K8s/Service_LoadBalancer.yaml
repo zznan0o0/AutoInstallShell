@@ -1,0 +1,23 @@
+# 容器内部内部集群
+# nginx-controller
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-node-service-lb
+  labels:
+    name: kube-node-service-lb
+spec:
+  type: LoadBalancer
+  clusterIP: 10.99.201.198
+  ports:
+  - port: 80
+    targetPort: 8081
+    protocol: TCP
+    nodePort: 32145
+  selector:
+    app: nginx
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.10.12    #这里是云服务商提供的负载匀衡器的IP地址

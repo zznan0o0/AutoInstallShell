@@ -35,6 +35,7 @@ kubeadm join 192.168.10.131:6443 --token strr9l.re120ogvei3mz2eb \
 
 # 直接访问被拒
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml
 
 # 直接浏览器访问复制内容到新建flannel.yaml文件中
 kubectl apply -f ./flannel.yaml
