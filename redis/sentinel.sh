@@ -22,6 +22,10 @@ masterauth 123456
 
 service redis restart
 
+# redis登录
+redis-cli
+auth 123456
+
 # sentinel
 apt-get install redis-sentinel -y
 
@@ -29,26 +33,32 @@ apt-get install redis-sentinel -y
 # https://www.cnblogs.com/linuxk/p/10718153.html#6、部署sentinel
 vim /etc/redis/sentinel.conf
 
+
 -----------------------
-daemonize yes
-pidfile "/var/run/sentinel/redis-sentinel.pid"
-logfile "/var/log/redis/redis-sentinel.log"
 port 26379
-dir "/var/lib/redis"
-sentinel myid 3ac9785721eb274906e2ed15945004e8e4ebdac5
-sentinel monitor mymaster 192.168.10.64  6379 2
-sentinel config-epoch mymaster 0
-sentinel leader-epoch mymaster 0
-sentinel current-epoch 0
-protected-mode no
+daemonize yes
+pidfile /var/run/sentinel/redis-sentinel.pid
+logfile /var/log/redis/redis-sentinel.log
+dir /var/lib/redis
+sentinel monitor mymaster 192.168.10.64 6379 2
+sentinel down-after-milliseconds mymaster 30000
+sentinel parallel-syncs mymaster 1
+sentinel failover-timeout mymaster 180000
+sentinel auth-pass mymaster 123456
+sentinel deny-scripts-reconfig yes
 
 ------------------------
 
+
 redis-sentinel /etc/redis/sentinel.conf
+
+cat /var/log/redis/redis-sentinel.log
+
 
 redis-cli -p 26379
 sentinel master mymaster
 # 重置
+killall -9 redis-sentinel
 sentinel reset myredis
 
 ---------------
