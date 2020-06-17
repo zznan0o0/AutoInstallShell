@@ -1,0 +1,19 @@
+---
+- hosts: pss
+  remote_user: root
+
+  tasks:
+    - name: bpull
+      shell: "cd /home/dever/project/juboPSS; /usr/bin/git pull"
+
+    - name: apull
+      shell: "cd /home/dever/project/juboPSS-react-umi; /usr/bin/git pull"
+    
+    - name: abuild
+      shell: "cd /home/dever/project/juboPSS-react-umi; /usr/bin/npm run build"
+    
+    - name: cp
+      synchronize: 
+        src: /home/dever/project/juboPSS-react-umi/dist
+        dest: /home/dever/project/juboPSS/public
+      delegate_to: "192.168.10.120"
