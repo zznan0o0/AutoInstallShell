@@ -20,7 +20,7 @@ masterauth 123456
 ------------
 
 
-service redis restart
+service redis-server restart
 
 # redis登录
 redis-cli

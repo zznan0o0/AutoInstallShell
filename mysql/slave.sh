@@ -35,11 +35,13 @@ stop slave;
 
 change master to master_host='192.168.10.154',master_user='slave',master_password='slave',master_log_file='mysql-bin.000003',master_log_pos=438;
 start slave;
-show slave status;
+show slave status\G
 
 -----------------
 查看信息如果报这个错的话The slave I/O thread stops because master and slave have equal MySQL server UUIDs，可能因为系统镜像是复制的所以/var/lib/mysql/auto.cnf里id是一样的，停止mysql 删除这个文件重启即可
-
+也可能是这个
+[mysqld]
+server_id=155
 # 有节点停止后
 stop slave;
 reset slave;
