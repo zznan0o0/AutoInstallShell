@@ -27,7 +27,7 @@ eg: ./importopt_win.sh -i 'D:\vm\image\u18_04_4_500g_root.ova' -n test -c 'Broad
         ;;
     *)
         echo "what's is $1"
-        shift 2
+        shift 1
         ;;
     esac
 done

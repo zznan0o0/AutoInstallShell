@@ -27,7 +27,7 @@ while [[ $# -ge 1 ]]; do
         ;;
     *)
         echo "what's is $1"
-        shift 2
+        shift 1
         ;;
     esac
 done
