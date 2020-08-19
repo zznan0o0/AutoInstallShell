@@ -5,6 +5,8 @@ apt purge mysql-server -y
 
 mkdir -p /etc/mysql/conf.d/
 aptitude install mysql-server -y
+apt install mysql-server -y
+
 
 
 mysql
