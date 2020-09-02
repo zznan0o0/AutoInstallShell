@@ -1,4 +1,4 @@
-add-apt-repository ppa:nginx/stable
+add-apt-repository ppa:nginx/stable -y
 apt-get update
 apt install nginx -y
 mkdir -p /etc/systemd/system/nginx.service.d

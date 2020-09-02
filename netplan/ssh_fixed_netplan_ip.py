@@ -14,12 +14,14 @@ temp = """echo 'network:
   renderer: networkd
   ethernets:
     enp0s3:
+      dhcp4: no
+      dhcp6: no
       addresses:
         - %s/24
       gateway4: 192.168.2.1
       nameservers:
           addresses: [192.168.2.1, 8.8.8.8]
-' > /etc/netplan/01.yaml; netplan apply;"""
+' > /etc/netplan/01.yaml; mv /etc/netplan/50-cloud-init.yaml /etc/netplan/50.bak && /usr/sbin/netplan --debug apply; """
 
 temp_config = {
     "ip": "",
@@ -31,23 +33,12 @@ temp_config = {
 
 if __name__ == "__main__":
     ips = [
-        "192.168.2.34",
-        "192.168.2.22",
-        "192.168.2.17",
-        "192.168.2.38",
-        "192.168.2.47",
-        "192.168.2.36",
-        "192.168.2.39",
-        "192.168.2.27",
-        "192.168.2.46",
-        "192.168.2.42",
-        "192.168.2.12",
-        "192.168.2.48",
-        "192.168.2.43",
-        "192.168.2.40",
-        "192.168.2.31",
-        "192.168.2.30",
-        "192.168.2.41",
+        "192.168.2.127",
+        "192.168.2.129",
+        "192.168.2.102",
+ 
+
+
     ]
 
     for v in ips:

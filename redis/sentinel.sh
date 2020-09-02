@@ -48,7 +48,7 @@ sentinel parallel-syncs mymaster 1
 sentinel failover-timeout mymaster 180000
 sentinel auth-pass mymaster 123456
 sentinel deny-scripts-reconfig yes
-sentinel client-reconfig-script mymaster /var/redis/reconfig.sh
+sentinel client-reconfig-script mymaster   /root/sh/vip.sh
 
 ------------------------
 
@@ -91,7 +91,7 @@ WantedBy=multi-user.target' > /etc/systemd/system/redis-sentinel.service
 
 
 # 重启后添加虚拟ip
-vim /root/sh/reboot_vip.sh
+vim /root/sh/vip.sh
 ```
 #/bin/bash
 /bin/sleep 10

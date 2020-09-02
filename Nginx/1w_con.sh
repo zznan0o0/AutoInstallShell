@@ -51,6 +51,8 @@ vim /etc/mysql/mysql.cnf
 max_connections = 10000
 open_files_limit = 10000
 
+https://www.cnblogs.com/zhoujinyi/archive/2013/01/31/2883433.html
+
 
 
 
