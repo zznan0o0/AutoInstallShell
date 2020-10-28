@@ -1,0 +1,32 @@
+---
+
+- hosts: node_exporter
+  remote_user: root
+
+  tasks:
+    - name: cp
+      synchronize: 
+        src: /home/dever/download/node_exporter-1.0.1.linux-amd64/node_exporter
+        dest: /usr/local/bin/
+    
+    - name: echo service
+      shell: |
+        echo "[Unit]
+        Description=node_exporter
+        Documentation=https://prometheus.io/
+        After=network.target
+        [Service]
+        Type=simple
+        User=root
+        ExecStart=/usr/local/bin/node_exporter
+        Restart=on-failure
+        [Install]
+        WantedBy=multi-user.target
+        " > /etc/systemd/system/node_exporter.service
+    
+    - name: service start
+      service:
+        enabled: true
+        name: node_exporter
+        state: started
+

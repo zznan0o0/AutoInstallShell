@@ -1,0 +1,13 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: change tcp_syncookies
+      lineinfile:
+        dest: /etc/sysctl.conf 
+        line: "net.ipv4.tcp_syncookies = 0"
+
+  
+    - name: apply config
+      shell: "/sbin/sysctl -p"

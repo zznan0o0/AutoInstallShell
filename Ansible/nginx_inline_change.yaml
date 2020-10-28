@@ -1,0 +1,15 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: change work num
+      lineinfile:
+        dest: /etc/nginx/nginx.conf
+        regexp: 'worker_connections'
+        line: '        worker_connections 10000;'
+  
+    - name: reload nginx
+      service:
+        name: "nginx"
+        state: reloaded

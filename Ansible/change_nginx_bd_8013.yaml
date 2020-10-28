@@ -1,0 +1,10 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: change bd
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 'server_name 192.168.2.36:80;'
+        line: '  server 192.168.2.36:80;'

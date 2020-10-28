@@ -1,0 +1,13 @@
+---
+- hosts: lvs_keep
+  remote_user: root
+
+  tasks:
+    - name: clear
+      shell: "ipvsadm -C"
+    
+    - name: reset
+      shell: "sh /root/sh/lvs.sh"
+    
+    - name: keep_reset
+      shell: "service keepalived restart"

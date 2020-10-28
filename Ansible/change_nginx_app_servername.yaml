@@ -1,0 +1,51 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: change s1
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 's1.atjubo.com'
+        line: '  server_name s10.atjubo.com;'
+  
+    - name: change tool
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 'tool.atjubo.com'
+        line: '  server_name tool0.atjubo.com;'
+  
+    - name: change hea
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 'hea.atjubo.com'
+        line: '  server_name hea0.atjubo.com;'
+  
+    - name: change pss
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 'pss.atjubo.com'
+        line: '  server_name pss0.atjubo.com;'
+  
+    - name: change s4
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 's4.atjubo.com'
+        line: '  server_name s40.atjubo.com;'
+  
+    - name: change goapi
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 'goapi.atjubo.com'
+        line: '  server_name goapi0.atjubo.com;'
+  
+    - name: change fmsev
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 'fmsev.atjubo.com'
+        line: '  server_name fmsev0.atjubo.com;'
+  
+    - name: reload nginx
+      service:
+        name: "nginx"
+        state: reloaded

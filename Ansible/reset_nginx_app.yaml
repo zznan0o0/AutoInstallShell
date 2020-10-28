@@ -1,0 +1,11 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: reset
+      shell: "sh /root/sh/lvs_item.sh"
+  
+  tasks:
+    - name: reset
+      shell: "service nginx restart"

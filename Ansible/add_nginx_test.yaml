@@ -1,0 +1,19 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: add test
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "server {\n  listen 8080 default_server;\n	listen [::]:8080 default_server;\n\n	\n\n	root /var/www/html;\n\n	index index.html index.htm index.nginx-debian.html;\n\n	server_name _;\n\n	location / {\n    try_files $uri $uri/ =404;\n	}\n}\nupstream test {\n        server 127.0.0.1:8080;\n        keepalive 256;\n        fair;\n}\nserver {\n  listen 8081;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://test;\n    proxy_ignore_client_abort   on;\n  }\n}"
+  
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded
+
+
+
+
+

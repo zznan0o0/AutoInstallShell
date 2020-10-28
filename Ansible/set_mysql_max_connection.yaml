@@ -1,0 +1,12 @@
+---
+- hosts: mysql
+  remote_user: root
+
+  tasks:
+    - name: change tcp_syncookies
+      lineinfile:
+        dest: /etc/mysql/mysql.cnf 
+        line: "[mysqld]\nmax_connections=10000"
+    
+    - name: mysql reload
+      shell: "service mysql reload"

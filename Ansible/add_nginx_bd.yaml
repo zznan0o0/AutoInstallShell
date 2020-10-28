@@ -1,0 +1,14 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: add bd
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream bd {\n  server 192.168.2.36:8013;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name bd.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://bd;\n    client_max_body_size 5M;\n\n  }\n}\n"
+
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded

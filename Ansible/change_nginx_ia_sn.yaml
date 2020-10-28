@@ -1,0 +1,15 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: change s40
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        regexp: 's40.atjubo.com'
+        line: '  server_name s4.atjubo.com;'
+
+    - name: reload nginx
+      service:
+        name: "nginx"
+        state: reloaded

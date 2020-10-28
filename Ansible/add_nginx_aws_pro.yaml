@@ -1,0 +1,49 @@
+---
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: add wms
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream wms {\n  server 192.168.2.143:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name s1.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://wms;\n    client_max_body_size 5M;\n\n  }\n}\n"
+    
+    - name: add ra
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream ra {\n  server 192.168.2.162:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name tool.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://ra;\n    client_max_body_size 5M;\n\n  }\n}\n"
+    
+    - name: add hea
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream hea {\n  server 192.168.2.163:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name hea.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://hea;\n    client_max_body_size 5M;\n\n  }\n}\n"
+    
+    - name: add erp
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream erp {\n  server 192.168.2.164:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name pss.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://erp;\n    client_max_body_size 5M;\n\n  }\n}\n"
+
+    - name: add ia
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream ia {\n  server 192.168.2.165:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name s4.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://ia;\n    client_max_body_size 5M;\n\n  }\n}\n"
+
+    - name: add goapi
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream goapi {\n  server 192.168.2.168:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name goapi.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://goapi;\n    client_max_body_size 5M;\n\n  }\n}\n"
+
+    - name: add cw_server
+      lineinfile:
+        dest: /etc/nginx/sites-available/default
+        line: "\nupstream cw_server {\n  server 192.168.2.167:80;\n  fair;\n}\n\nserver {\n  listen 80;\n  server_name fmsev.atjubo.com;\n  location / {\n    proxy_store off;\n    proxy_redirect off;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header Host $http_host;\n    proxy_pass http://cw_server;\n    client_max_body_size 5M;\n\n  }\n}\n"
+  
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded
+
+
+
+
+

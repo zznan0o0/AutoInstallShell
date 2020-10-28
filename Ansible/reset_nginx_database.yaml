@@ -1,0 +1,7 @@
+---
+- hosts: nginx_keep_database
+  remote_user: root
+  
+  tasks:
+    - name: reset
+      shell: "service nginx restart"
