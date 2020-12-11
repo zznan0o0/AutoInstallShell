@@ -1,0 +1,89 @@
+version: '3.4'
+services:
+  apollo-configservice-pro:
+    image: 'apolloconfig/apollo-configservice:1.7.1'
+    container_name: apollo-configservice-pro
+    restart: always
+    network_mode: host
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://127.0.0.1:13306/ApolloConfigDB?characterEncoding=utf8"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SERVER_PORT: 8080
+      # eureka.instance.ip-address: 192.168.10.89
+    # ports:
+    #   - '8080:8080'
+    volumes:
+      - './log/configservice:/opt/logs'
+  
+  apollo-adminservice-pro:
+    image: 'apolloconfig/apollo-adminservice:1.7.1'
+    container_name: apollo-adminservice-pro
+    restart: always
+    network_mode: host
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://127.0.0.1:13306/ApolloConfigDB?characterEncoding=utf8"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SERVER_PORT: 8090
+      # eureka.instance.ip-address: 192.168.10.89
+    # ports:
+    #   - '8081:8090'
+    volumes:
+      - './log/adminservice:/opt/logs'
+
+  apollo-configservice-dev:
+    image: 'apolloconfig/apollo-configservice:1.7.1'
+    container_name: apollo-configservice-dev
+    restart: always
+    network_mode: host
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://127.0.0.1:23306/ApolloConfigDB?characterEncoding=utf8"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SERVER_PORT: 8081
+      # eureka.instance.ip-address: 192.168.10.89
+    # ports:
+    #   - '8083:8080'
+    volumes:
+      - './log_dev/configservice:/opt/logs'
+  
+  apollo-adminservice-dev:
+    image: 'apolloconfig/apollo-adminservice:1.7.1'
+    container_name: apollo-adminservice-dev
+    restart: always
+    network_mode: host
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://127.0.0.1:23306/ApolloConfigDB?characterEncoding=utf8"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SERVER_PORT: 8091
+      # eureka.instance.ip-address: 192.168.10.89
+    # ports:
+    #   - '8084:8090'
+    volumes:
+      - './log_dev/adminservice:/opt/logs'
+    
+
+    
+
+  apollo-portal:
+    image: 'apolloconfig/apollo-portal:1.7.1'
+    container_name: apollo-portal
+    restart: always
+    network_mode: host
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://127.0.0.1:13306/ApolloPortalDB?characterEncoding=utf8"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      APOLLO_PORTAL_ENVS: dev,pro
+      SERVER_PORT: 8070
+      # eureka.instance.ip-address: 192.168.10.89
+      DEV_META: 'http://192.168.10.89:8081'
+      PRO_META: 'http://192.168.10.89:8080'
+      # FAT_META: 'http://192.168.10.89:8080'
+      # UAT_META: 'http://192.168.10.89:8080'
+    # ports:
+    #   - '8082:8070'
+    volumes:
+      - './log/portal:/opt/logs'

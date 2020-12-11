@@ -1,0 +1,16 @@
+[Unit]
+Documentation=springbootEureka
+
+[Service]
+User=root
+Group=root
+Type=forking
+Restart=always
+KillMode=process
+ExecStart=/root/java/springbootEureka.sh start
+ExecStop=/root/java/springbootEureka.sh stop
+PIDFile=/var/run/springbootEureka.pid
+
+
+[Install]
+WantedBy=multi-user.target

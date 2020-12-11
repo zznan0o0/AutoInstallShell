@@ -1,0 +1,16 @@
+[Unit]
+Documentation=springbootZuul
+
+[Service]
+User=root
+Group=root
+Type=forking
+Restart=always
+KillMode=process
+ExecStart=/root/java/springbootZuul.sh start
+ExecStop=/root/java/springbootZuul.sh stop
+PIDFile=/var/run/springbootZuul.pid
+
+
+[Install]
+WantedBy=multi-user.target
