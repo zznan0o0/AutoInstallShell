@@ -1,0 +1,2 @@
+* * * * * (cd /home/dever/project/php/laravel;php artisan apollo:get;php artisan config:cache;) >> /home/dever/project/php/laravel/Apollo/apollo.log 2>&1
+* * * * * (sleep 30;cd /home/dever/project/php/laravel;php artisan apollo:get;php artisan config:cache;) >> /home/dever/project/php/laravel/Apollo/apollo.log 2>&1

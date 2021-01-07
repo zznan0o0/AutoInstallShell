@@ -1,0 +1,116 @@
+---
+
+- hosts: nginx_app
+  remote_user: root
+
+  tasks:
+    - name: echo apollo
+      shell: |
+        echo 'upstream apollo_pro_config_server {
+          server 192.168.2.128:8080;
+          server 192.168.2.105:8080;
+          fair;
+        }
+
+        server {
+          listen 8080;
+          location / {
+            proxy_store off;
+            proxy_redirect off;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $http_host;
+            proxy_pass http://apollo_pro_config_server;
+            client_max_body_size 100M;
+          }
+        }
+
+
+        upstream apollo_pro_admin_server {
+          server 192.168.2.128:8090;
+          server 192.168.2.105:8090;
+          fair;
+        }
+
+        server {
+          listen 8090;
+          location / {
+            proxy_store off;
+            proxy_redirect off;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $http_host;
+            proxy_pass http://apollo_pro_admin_server;
+            client_max_body_size 100M;
+          }
+        }
+
+
+        upstream apollo_dev_config_server {
+          server 192.168.2.128:8081;
+          server 192.168.2.105:8081;
+          fair;
+        }
+
+        server {
+          listen 8081;
+          location / {
+            proxy_store off;
+            proxy_redirect off;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $http_host;
+            proxy_pass http://apollo_dev_config_server;
+            client_max_body_size 100M;
+          }
+        }
+
+
+        upstream apollo_dev_admin_server {
+          server 192.168.2.128:8091;
+          server 192.168.2.105:8091;
+          fair;
+        }
+
+        server {
+          listen 8091;
+          location / {
+            proxy_store off;
+            proxy_redirect off;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $http_host;
+            proxy_pass http://apollo_dev_admin_server;
+            client_max_body_size 100M;
+          }
+        }
+
+
+        upstream apollo_portal_server {
+          server 192.168.2.128:8070;
+          server 192.168.2.105:8070;
+          fair;
+        }
+
+        server {
+          listen 8070;
+          location / {
+            proxy_store off;
+            proxy_redirect off;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $http_host;
+            proxy_pass http://apollo_portal_server;
+            client_max_body_size 100M;
+          }
+        }
+        ' > /etc/nginx/sites-available/apollo
+
+    - name: ln target
+      shell: ln -sf /etc/nginx/sites-available/apollo /etc/nginx/sites-enabled/apollo
+
+    - name: service reload
+      service:
+        enabled: true
+        name: nginx
+        state: reloaded
